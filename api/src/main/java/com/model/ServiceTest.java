@@ -1,3 +1,3 @@
 package com.model;
 
-public record ServiceTest(String service) { }
+public record ServiceTest(String message, Integer Code) { }
