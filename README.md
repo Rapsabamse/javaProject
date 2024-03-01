@@ -1,3 +1,9 @@
 Hey, thanks for reading me :)
 
-use ./gradlew bootRun to launch
+# RUN API
+
+Goto /api and use ./gradlew bootRun to launch
+
+# RUN BLUR 
+
+Goto /blur and use ./gradlew bootRun to launch
