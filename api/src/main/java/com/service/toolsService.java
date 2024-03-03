@@ -14,7 +14,7 @@ import com.model.*;
 public class toolsService {
     //create a restTemplate for creating a http request
     RestTemplate restTemplate = new RestTemplate();
-    String URL = "http://localhost:8082/test";
+    String URL = "http://localhost:8082";
 
     //Create mapper to get specific data from responses
     ObjectMapper mapper = new ObjectMapper();
@@ -25,7 +25,8 @@ public class toolsService {
      * @return {message: a message of status, code: http response code}
      */
     public ServiceTest testTools(){
-        ResponseEntity<String> response = restTemplate.getForEntity(URL, String.class);
+        String toolUrl = URL + "/test";
+        ResponseEntity<String> response = restTemplate.getForEntity(toolUrl, String.class);
 
         String message = getMessage(response, "message");
 
