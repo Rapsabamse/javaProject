@@ -1,3 +1,5 @@
 package com.model;
 
-public record ServiceTest(String message, Integer Code) { }
+import org.springframework.http.HttpStatusCode;
+
+public record ServiceTest(String message, HttpStatusCode code) { }

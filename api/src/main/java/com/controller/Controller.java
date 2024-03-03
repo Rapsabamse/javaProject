@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.model.*;
-import com.service.imageFiltersService;
+import com.service.*;
 
 
 @RestController
@@ -16,8 +16,11 @@ public class Controller {
 	private final AtomicLong counter = new AtomicLong();
 
 	imageFiltersService imageFilterService = new imageFiltersService();
+	toolsService toolsService = new toolsService();
 
 	/**
+	 * Used to test if connection to the API service is funcitoning
+	 * 
 	 * @param name
 	 * @return Hello! {name}
 	 */
@@ -27,16 +30,24 @@ public class Controller {
 	}
 
 	/**
-	 * @param service
+	 * Used to test if connection with the imageProccesor microservice is functioning
+	 * 
 	 * @return {message: a message of status, code: http response code}
 	 */
-	@GetMapping("/testService")
-	public ServiceTest serviceTest(@RequestParam(value = "service", defaultValue = "blur") String service) {
-		if("blur".equals(service)){
-			ServiceResponse test = imageFilterService.testBlur();
-			return new ServiceTest(test.message(), test.Code());
-		}
+	@GetMapping("/testImageProcessor")
+	public ServiceTest processorServiceTest() {
+		ServiceTest test = imageFilterService.testImageProcessor();
+		return new ServiceTest(test.message(), test.code());
+	}
 
-		return new ServiceTest("Error", 400);
+	/**
+	 * Used to test if connection with the tools microservice is functioning
+	 * 
+	 * @return {message: a message of status, code: http response code}
+	 */
+	@GetMapping("/testImageProcessor")
+	public ServiceTest toolsServiceTest() {
+		ServiceTest test = toolsService.testTools();
+		return new ServiceTest(test.message(), test.code());
 	}
 }

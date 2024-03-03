@@ -11,10 +11,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.model.*;
 
 @Service
-public class imageFiltersService {
+public class toolsService {
     //create a restTemplate for creating a http request
     RestTemplate restTemplate = new RestTemplate();
-    String URL = "http://localhost:8081/test";
+    String URL = "http://localhost:8082/test";
 
     //Create mapper to get specific data from responses
     ObjectMapper mapper = new ObjectMapper();
@@ -24,7 +24,7 @@ public class imageFiltersService {
      * 
      * @return {message: a message of status, code: http response code}
      */
-    public ServiceTest testImageProcessor(){
+    public ServiceTest testTools(){
         ResponseEntity<String> response = restTemplate.getForEntity(URL, String.class);
 
         String message = getMessage(response, "message");
