@@ -20,6 +20,6 @@ public class Controller {
 	 */
 	@GetMapping("/test")
 	public ServiceResponse test() {
-        return new ServiceResponse("All good", 200);
+        return new ServiceResponse("ImageProcessor-service works!!", 200);
     }
 }
