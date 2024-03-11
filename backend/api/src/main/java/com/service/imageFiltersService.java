@@ -14,7 +14,7 @@ import com.model.*;
 public class imageFiltersService {
     //create a restTemplate for creating a http request
     RestTemplate restTemplate = new RestTemplate();
-    String URL = "http://localhost:8081/";
+    String URL = "http://localhost:3002/";
 
     //Create mapper to get specific data from responses
     ObjectMapper mapper = new ObjectMapper();
@@ -27,11 +27,10 @@ public class imageFiltersService {
      * 
      * @return Blurred image (in base64 format)
      */
-    public ServiceResponse blurImage(){
-        String blurUrl = URL + "/test";
-
-        ResponseEntity<String> response = restTemplate.getForEntity(blurUrl, String.class);
-        String image = getMessage(response, "image");
+    public ServiceResponse blurImage(String imageCode){
+        String blurUrl = URL + "/blur";
+        ResponseEntity<String> response = restTemplate.postForEntity(blurUrl, imageCode, String.class);
+        String image = getMessage(response, "message");
 
         return new ServiceResponse(image, response.getStatusCode());
     }
@@ -65,7 +64,6 @@ public class imageFiltersService {
         try {
             JsonNode temp = mapper.readTree(content);
             JsonNode message = temp.path(filter);
-
             return message.asText();
         } catch (JsonMappingException e) {
             e.printStackTrace();

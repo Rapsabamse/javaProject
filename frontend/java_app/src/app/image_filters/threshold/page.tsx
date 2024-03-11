@@ -6,7 +6,7 @@ import Link from "next/link";
 import reqThreshold from "../helpers.js";
 import React, { Component, useState } from "react";
 
-var image = null
+var image = null;
 
 export default function threshold() {
   const [selectedImage, setSelectedImage] = useState(null);

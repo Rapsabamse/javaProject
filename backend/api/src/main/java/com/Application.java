@@ -1,5 +1,6 @@
 package com;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -18,6 +19,6 @@ public class Application {
 		//Sets the port number of the application
 		
 		//TODO: set port in environment variables
-        return factory -> factory.setPort(8080); // Set your desired port here
+        return factory -> factory.setPort(3001); // Set your desired port here
     }
 }
