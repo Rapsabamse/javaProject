@@ -44,7 +44,7 @@ export default function imageFilters() {
       <div className="mb-32 flex justify-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
 
         <Link
-          href="/image_filters"
+          href="/image_filters/blur"
           className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
           rel="noopener noreferrer"
         >
@@ -60,7 +60,7 @@ export default function imageFilters() {
         </Link>
 
         <Link
-            href="/image_filters"
+            href="/image_filters/threshold"
             className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
             rel="noopener noreferrer"
         >
@@ -86,7 +86,7 @@ export default function imageFilters() {
               <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none" style={{ transform: 'scaleX(-1)' }}>
                 -&gt;
               </span>
-              Go Home{" "}
+              Go back{" "}
             </h2>
           </Link>
       </div>
