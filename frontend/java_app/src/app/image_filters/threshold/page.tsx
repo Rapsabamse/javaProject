@@ -68,8 +68,10 @@ export default function threshold() {
             onChange={(event) => {
               //Get uploaded image
               image = event.target.files[0];
-              setSelectedImage(event.target.files[0]);
-              document.getElementById("submit").style.display = "flex";
+              if(image != undefined){  
+                setSelectedImage(event.target.files[0]);
+                document.getElementById("submit").style.display = "flex";
+              }
             }}
           />
           <p>Upload image</p>

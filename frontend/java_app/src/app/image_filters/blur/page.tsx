@@ -1,8 +1,15 @@
+"use client"
+
 import { link } from "fs";
 import Image from "next/image";
 import Link from "next/link";
+import reqThreshold from "../helpers.js";
+import React, { Component, useState } from "react";
+
+var image = null
 
 export default function blur() {
+  const [selectedImage, setSelectedImage] = useState(null);
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
@@ -33,16 +40,64 @@ export default function blur() {
           className="group rounded-lg border border-transparent px-5 py-4 transition-colors"
         >
           <h2 className={`mb-3 text-2xl font-semibold`}>
-            Try the tools below
+            Blur your image
           </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            All tools are developed in Java
-          </p>
         </a>
       </div>
 
       <div className="mb-32 flex justify-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <h1>Blur images</h1>
+        {selectedImage && (
+          <div>
+            <div className='imageInput'>
+              <img 
+                id='image'
+                alt="not found"
+                src={URL.createObjectURL(selectedImage)}
+                style={{maxWidth: '40vw', maxHeight: '40vh'}}
+              />
+            </div>
+          </div>
+        )}
+      </div>
+      <div className="mb-32 flex justify-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
+        <label id="upload" className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30">
+          <input
+            type="file"
+            style={{ display: 'none' }} // Hide the input using inline styles
+            name="myImage"
+            onChange={(event) => {
+              //Get uploaded image
+              image = event.target.files[0];
+              if(image != undefined){  
+                setSelectedImage(event.target.files[0]);
+                document.getElementById("submit").style.display = "flex";
+              }
+            }}
+          />
+          <p>Upload image</p>
+          <Image 
+            className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
+            src="/upload.svg"
+            alt="Upload"
+            style={{ marginLeft: 'auto', marginRight: 'auto' }}
+            width={50}
+            height={37}
+          />
+        </label>
+
+        <button id="submit" className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
+          style={{ display: 'none' }} // Hide the button using inline styles
+          onClick={() => reqThreshold(image)}>Filter Image{" "}
+          <Image 
+            className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
+            src="/submit.svg"
+            alt="submit"
+            style={{ marginLeft: 'auto', marginRight: 'auto' }}
+            width={50}
+            height={37}
+          />
+         </button>
+         
       </div>
 
       <div className="mb-32 flex justify-left lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
