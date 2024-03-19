@@ -23,7 +23,7 @@ function toDataURL(src, outputformat) {
     });
   }
 
-export default async function reqThreshold(image) {
+export default async function filterImage(image, filter) {
   var url64 = null
   //Converts the uploaded image into base64
   image = document.getElementById("image");
@@ -54,7 +54,7 @@ export default async function reqThreshold(image) {
   };
 
   //TODO: put in environment variables
-  var url = "http://localhost:3001/blur"
+  var url = "http://localhost:3001/" + filter
 
   // Send the POST request
   fetch(url, options)

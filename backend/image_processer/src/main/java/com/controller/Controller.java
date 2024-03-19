@@ -39,4 +39,15 @@ public class Controller {
 		//System.err.println(imageCode);
 		return imageFilterService.blurImage(imageCode);
 	}
+
+	/**
+	 * Used to blur an image with the image_processor microservice
+	 * 
+	 * @return Blurred image {base64 format}
+	 */
+	@PostMapping("/threshold")
+	public ServiceResponse thresholdImage(@RequestBody String imageCode) {
+		//System.err.println(imageCode);
+		return imageFilterService.thresholdImage(imageCode);
+	}
 }

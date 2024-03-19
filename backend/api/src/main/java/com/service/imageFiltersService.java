@@ -35,6 +35,22 @@ public class imageFiltersService {
         return new ServiceResponse(image, response.getStatusCode());
     }
 
+    /**
+     * Function used send an image for imageprocessing to threshold
+     * Then recieves the blurred image from the imageprocessing service
+     * 
+     * @type POST
+     * 
+     * @return Blurred image (in base64 format)
+     */
+    public ServiceResponse thresholdImage(String imageCode){
+        String blurUrl = URL + "/threshold";
+        ResponseEntity<String> response = restTemplate.postForEntity(blurUrl, imageCode, String.class);
+        String image = getMessage(response, "message");
+
+        return new ServiceResponse(image, response.getStatusCode());
+    }
+
 
     /**
      * Function used to test if connection with image processer is functioning

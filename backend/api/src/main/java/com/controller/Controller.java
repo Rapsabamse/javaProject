@@ -36,6 +36,16 @@ public class Controller {
 		return new ServiceResponse(response.response(), response.code());
 	}
 
+	/**
+	 * Used to threhsold an image with the image_processor microservice
+	 * 
+	 * @return Blurred image {base64 format}
+	 */
+	@PostMapping("/threshold")
+	public ServiceResponse thresholdImage(@RequestBody String imageCode) {
+		ServiceResponse response = imageFilterService.thresholdImage(imageCode);
+		return new ServiceResponse(response.response(), response.code());
+	}
 
 	//////////////////////////////////////////////////////////////////////////////////////
 	//				functions for the tools microservice								//

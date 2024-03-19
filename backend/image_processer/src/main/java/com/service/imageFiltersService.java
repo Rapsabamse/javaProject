@@ -46,6 +46,24 @@ public class imageFiltersService {
         return new ServiceResponse(base64Img, 200);
     }
 
+    public ServiceResponse thresholdImage(String base64Img){
+        //Create an imageMatrix of the base64 string.
+        int[][][] imageMatrix = base64ToMatrix(base64Img);
+
+
+        //threshold the matrix
+        imageMatrix = threshold(imageMatrix);
+
+        //Convert matrix into a base64 image
+        base64Img = matrixToBase64(imageMatrix);
+
+        //Format base64
+        //TODO: Add support for different image types
+        base64Img = "data:image/png;base64," + base64Img;
+
+        return new ServiceResponse(base64Img, 200);
+    }
+
 
     public ServiceResponse testBlur(){
         return new ServiceResponse("Blur - All good", 200);
@@ -54,6 +72,50 @@ public class imageFiltersService {
     public ServiceResponse testThreshold(){
         return new ServiceResponse("Threshold - All good", 200);
     }
+
+    private static int[][][] threshold(int[][][] imageMatrix){
+        int height = imageMatrix.length;
+        int width = imageMatrix[0].length;
+
+        int sum = 0;
+        int pixelAmount = height * width;
+
+        //Add image color intensity to sum
+        for(int i = 0; i < height; i++){
+            for(int j = 0; j < width; j++){
+                for(int k = 0; k < 3; k++){
+                    sum += imageMatrix[i][j][k];
+                }
+            }
+        }
+
+        //Sum is now average intensity
+        //Everything < sum = black, Everything > sum = white
+        sum = sum/pixelAmount;
+
+        //Check every pixels intensity and turn them black or white depending on their color intensity
+        for(int i = 0; i < height; i++){
+            for(int j = 0; j < width; j++){
+                int colorIntensity = 0;
+                for(int k = 0; k < 3; k++){
+                    colorIntensity += imageMatrix[i][j][k];
+                }
+                if(sum > colorIntensity){
+                    for(int k = 0; k < 3; k++){
+                        imageMatrix[i][j][k] = 0;
+                    }
+                } else {
+                    for(int k = 0; k < 3; k++){
+                        imageMatrix[i][j][k] = 255;
+                    }
+                }
+            }
+        }
+
+        return imageMatrix;
+    }
+
+
 
     /**
      * Applies Gaussian blur to a color matrix representing an image.
