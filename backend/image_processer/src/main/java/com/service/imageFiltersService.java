@@ -40,6 +40,7 @@ public class imageFiltersService {
         base64Img = matrixToBase64(imageMatrix);
 
         //Format base64
+        //TODO: Add support for different image types
         base64Img = "data:image/png;base64," + base64Img;
 
         return new ServiceResponse(base64Img, 200);
