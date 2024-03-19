@@ -10,9 +10,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.model.ServiceResponse;
 
+import com.service.imageFiltersService;
+
 
 @RestController
 public class Controller {
+	//Initiate imageFilterService
+	imageFiltersService imageFilterService = new imageFiltersService();
 
 	private static final String template = "Hello, %s!";
 	private final AtomicLong counter = new AtomicLong();
@@ -32,7 +36,7 @@ public class Controller {
 	 */
 	@PostMapping("/blur")
 	public ServiceResponse blurImage(@RequestBody String imageCode) {
-		System.err.println(imageCode);
-		return new ServiceResponse(imageCode, 200);
+		//System.err.println(imageCode);
+		return imageFilterService.blurImage(imageCode);
 	}
 }
