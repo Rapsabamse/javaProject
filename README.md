@@ -1,5 +1,12 @@
 Hey, thanks for reading me :)
 
+# Needed technologies:
+Git
+Java
+Node
+Docker
+next.js
+
 # RUN API
 
 Goto /api and use <./gradlew bootRun> to launch

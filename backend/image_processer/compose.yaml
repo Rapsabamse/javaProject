@@ -1,1 +1,6 @@
 services:
+  image_processer:
+    build:
+      context: .
+    ports:
+      - 3002:3002

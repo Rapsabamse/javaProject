@@ -1,1 +1,6 @@
 services:
+  api:
+    build:
+      context: .
+    ports:
+      - 3001:3001
