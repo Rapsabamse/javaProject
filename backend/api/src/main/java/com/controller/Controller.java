@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.model.*;
 import com.service.*;
 
+/**
+ * Class responsible for REST api to answer other services
+ */
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class Controller {

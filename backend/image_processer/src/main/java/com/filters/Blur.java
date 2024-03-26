@@ -1,6 +1,8 @@
 package main.java.com.filters;
 
-
+/**
+ * Class responsible for doing a blur filter on a 3D array
+ */
 public class Blur {
     /**
      * Applies Gaussian blur to a color matrix representing an image.
@@ -31,20 +33,24 @@ public class Blur {
                     double sum = 0;
                     double totalWeight = 0;
                     
-                    //Calculate totalWeight
+                    //Calculate totalWeight:
+                    //  creates a rectangle with width = radius,
+                    //  gets the weight of each pixel in this rectangle
+                    //  weight is multiplied with current pixel and added into sum
+                    //  weight is added into total weight
                     for (int offsetY = -radius; offsetY <= radius; offsetY++) {
                         for (int offsetX = -radius; offsetX <= radius; offsetX++) {
                             int pixelY = Math.min(Math.max(y + offsetY, 0), height - 1);
                             int pixelX = Math.min(Math.max(x + offsetX, 0), width - 1);
                     
-                            double weight = kernel[offsetY + radius][offsetX + radius];  // Adjusted indexing
+                            double weight = kernel[offsetY + radius][offsetX + radius];
                             sum += imageMatrix[pixelY][pixelX][color] * weight;
                             totalWeight += weight;
                         }
                     }
                     // Normalize the sum by the total weight
                     int blurredValue = (int) (sum / totalWeight);
-                    // System.err.println("Adding to matrix[" + y + "][" + x + "][" + color + "]");
+
                     //Put new value into matrix
                     blurredMatrix[y][x][color] = Math.min(Math.max(blurredValue, 0), 255);
                 }
@@ -54,6 +60,12 @@ public class Blur {
         return blurredMatrix;
     }
 
+    /**
+     * Creates a Gaussian kernel for image blurring.
+     * 
+     * @param radius The radius of the kernel. The size of the kernel will be (2 * radius + 1) x (2 * radius + 1).
+     * @return The Gaussian kernel represented as a 2D array of doubles.
+     */
     private static double[][] createGaussianKernel(int radius) {
         // Calculate the size of the kernel
         int size = 2 * radius + 1;
@@ -61,8 +73,8 @@ public class Blur {
         // Create a 2D array to store the kernel
         double[][] kernel = new double[size][size];
 
-        // Calculate the normalization factor
-        double sigma = radius / 3.0; // Adjust sigma for desired blur level
+        // Calculate the normalization factor (to make brightness correct)
+        double sigma = radius / 3.0;
         double normFactor = 1 / (2 * Math.PI * sigma * sigma);
 
         // Populate the kernel with Gaussian values
@@ -70,6 +82,7 @@ public class Blur {
             for (int j = 0; j < size; j++) {
                 int x = i - radius;
                 int y = j - radius;
+                //normalized to make overall brightness correct
                 kernel[i][j] = normFactor * Math.exp(-(x * x + y * y) / (2 * sigma * sigma));
             }
         }

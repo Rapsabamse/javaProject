@@ -10,6 +10,9 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.model.*;
 
+/**
+ * Class responsible for service layer of image filtering in API
+ */
 @Service
 public class imageFiltersService {
     //create a restTemplate for creating a http request

@@ -9,6 +9,9 @@ import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
 
+/**
+ * Class responsible for conversion between base64 & 3D matrices
+ */
 public class ImageHandling {
     /**
      * Converts a color matrix into a base64-encoded image.

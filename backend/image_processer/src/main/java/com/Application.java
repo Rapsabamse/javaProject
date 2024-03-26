@@ -6,6 +6,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.boot.web.server.ConfigurableWebServerFactory;
 import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 
+/**
+ * The main class for starting the Spring Boot application.
+ * This class initializes and starts the Spring application context.
+ */
 @SpringBootApplication
 public class Application {
 	public static void main(String[] args) {

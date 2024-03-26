@@ -1,6 +1,18 @@
 package main.java.com.filters;
 
+/**
+ * Class responsible for doing a threshold filter on a 3D array
+ */
 public class ThresholdBasic {
+    /**
+     * Applies a thresholding operation to an RGB image matrix.
+     * Pixels with intensity less than the average intensity are set to black (0), 
+     * Pixels with intensity greater than or equal to the average intensity are set to white (255).
+     *
+     * @param imageMatrix The input RGB image matrix represented as a 3D array.
+     *                    The dimensions are [height][width][color_channel], where color_channel represents the Red, Green, and Blue channels.
+     * @return The thresholded RGB image matrix with pixels set to either black or white.
+     */
     public int[][][] threshold(int[][][] imageMatrix){
         int height = imageMatrix.length;
         int width = imageMatrix[0].length;

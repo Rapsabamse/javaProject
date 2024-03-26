@@ -12,7 +12,9 @@ import com.model.ServiceResponse;
 
 import com.service.imageFiltersService;
 
-
+/**
+ * Class responsible for REST api to answer other services
+ */
 @RestController
 public class Controller {
 	//Initiate imageFilterService

@@ -1,7 +1,7 @@
 package main.java.com.filters;
 
 
-//Contains services used for the threshold filter
+//Contains services used for the threshold filter (Experimental, looks bad)
 
 public class ThresholdAdaptive {
     //These numbers can be tweaked, should probably be set as parameters instead
