@@ -58,7 +58,6 @@ public class imageFiltersService {
 
         //Convert matrix into a base64 image
         base64Img = imageHandler.matrixToBase64(imageMatrix, "png");
-        System.err.println(base64Img);
 
         return new ServiceResponse(base64Img, 200);
     }

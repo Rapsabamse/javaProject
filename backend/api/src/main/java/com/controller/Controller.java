@@ -43,7 +43,6 @@ public class Controller {
 	 */
 	@PostMapping("/threshold")
 	public ServiceResponse thresholdImage(@RequestBody String imageCode) {
-		System.out.println("hello");
 		ServiceResponse response = imageFilterService.thresholdImage(imageCode);
 		return new ServiceResponse(response.response(), response.code());
 	}

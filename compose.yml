@@ -26,7 +26,7 @@ services:
     networks:
       - my_network
 
-  image_processer:
+  image-processer:
     build:
       context: ./backend/image_processer
       dockerfile: Dockerfile

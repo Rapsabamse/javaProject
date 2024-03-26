@@ -33,7 +33,7 @@ export default async function filterImage(image, filter) {
     url64 = dataURL
   })
   url64 = url64.slice(url64.indexOf(",") + 1)
-  console.log(url64)
+  //console.log(url64)
   //Create a JSON object of the url
   //let splitUrl = url64.slice(url64.indexOf(",") + 1)
   // const jsonStr = "{ " + '"body" : "' + splitUrl + '" }'
