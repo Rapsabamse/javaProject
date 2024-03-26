@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./frontend/java_app/.
+      dockerfile: Dockerfile
+    environment:
+      NODE_ENV: production
+    ports:
+      - 3000:3000
+    volumes:
+      - ./frontend:/java_app
+    networks:
+      - my_network
+
+  api:
+    build:
+      context: ./backend/api
+      dockerfile: Dockerfile
+    ports:
+      - 3001:3001
+    working_dir: /app
+    volumes:
+      - ./backend/api:/app
+    networks:
+      - my_network
+
+  image_processer:
+    build:
+      context: ./backend/image_processer
+      dockerfile: Dockerfile
+    ports:
+      - 3002:3002
+    working_dir: /app
+    volumes:
+      - ./backend/image_processer:/app
+    networks:
+      - my_network
+
+networks:
+  my_network:

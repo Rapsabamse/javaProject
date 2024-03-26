@@ -47,6 +47,7 @@ public class Controller {
 	 */
 	@PostMapping("/threshold")
 	public ServiceResponse thresholdImage(@RequestBody String imageCode) {
+		System.err.println("threshold");
 		//System.err.println(imageCode);
 		return imageFilterService.thresholdImage(imageCode);
 	}

@@ -14,7 +14,7 @@ import com.model.*;
 public class imageFiltersService {
     //create a restTemplate for creating a http request
     RestTemplate restTemplate = new RestTemplate();
-    String URL = "http://localhost:3002/";
+    String URL = "http://image_processer:3002";
 
     //Create mapper to get specific data from responses
     ObjectMapper mapper = new ObjectMapper();
@@ -45,6 +45,7 @@ public class imageFiltersService {
      */
     public ServiceResponse thresholdImage(String imageCode){
         String blurUrl = URL + "/threshold";
+        System.err.println(blurUrl);
         ResponseEntity<String> response = restTemplate.postForEntity(blurUrl, imageCode, String.class);
         String image = getMessage(response, "message");
 
